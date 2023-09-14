@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+
+    <input v-model="name" type="text" class="text" placeholder="Name">
+    <input v-model="message" type="text" class="text" placeholder="Message">
+    <button @click="sendMessage">Send</button>
+
+
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  data() { 
+    return { 
+      name: "",
+      message: "",
+      messages: []
+    }
+  },
+  methods: {
+    async sendMessage() {
+      const msg = {
+        name: this.name,
+        message: this.message
+      }
+
+console.log(msg)
+      try {
+        const response = await axios.post('http://localhost:5000/messages', msg)
+        console.log(response)
+      } catch(err) {
+        console.log(err)
+      }
+    },
+    }
   }
-}
+  
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+
