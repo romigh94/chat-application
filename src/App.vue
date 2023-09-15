@@ -1,43 +1,13 @@
 <template>
   <div id="app">
 
-    <input v-model="name" type="text" class="text" placeholder="Name">
-    <input v-model="message" type="text" class="text" placeholder="Message">
-    <button @click="sendMessage">Send</button>
+    <router-link to="/">Home</router-link>
+    <router-link to="/login">Login</router-link>
+    <router-link to="/register">Register</router-link>
+
+    <router-view></router-view>
 
 
   </div>
 </template>
-
-<script>
-import axios from 'axios'
-
-export default {
-  data() { 
-    return { 
-      name: "",
-      message: "",
-      messages: []
-    }
-  },
-  methods: {
-    async sendMessage() {
-      const msg = {
-        name: this.name,
-        message: this.message
-      }
-
-console.log(msg)
-      try {
-        const response = await axios.post('http://localhost:5000/messages', msg)
-        console.log(response)
-      } catch(err) {
-        console.log(err)
-      }
-    },
-    }
-  }
-  
-</script>
-
 

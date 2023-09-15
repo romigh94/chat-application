@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,button,input {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    max-height: 100vh;
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+
+/* REGISTER FORM */
+
+.register-form {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    padding: 3rem 5rem;
+    background-color: #121224;
+}
+
+.inner-register-form {
+    background-color: #00000076;
+    padding: 3rem 5rem;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 2rem;
+}
+
+.inner-register-form > input {
+    background-color: transparent;
+    padding: 1rem;
+    border: 0.1rem solid #85B6FF;
+    border-radius: 0.4rem;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.inner-register-form > input:focus {
+    border: 0.1rem solid #997af0;
+    outline: none;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.brand img {
+    height: 5rem;
+}
+
+h1 {
+    color: white;
+    text-transform: uppercase;
+}
+
+button {
+    background-color: #997af0;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: 0.5s ease-in-out;
+}
+
+button:hover{
+    background-color: #85B6FF;
+}
+
+span {
+    color: white;
+    text-transform: uppercase;
+}
+
+span > a {
+    color: #85B6FF;
+    text-decoration: none;
+    font-weight: bold;
+
+}
