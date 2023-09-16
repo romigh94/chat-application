@@ -99,3 +99,12 @@ span > a {
     font-weight: bold;
 
 }
+
+
+.error-container {
+    color: rgb(255, 87, 87);
+}
+
+.success-container {
+    color: lightgreen;
+}
