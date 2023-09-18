@@ -4,12 +4,14 @@ import './style.css'
 import App from './App.vue'
 import LoginVue from './components/LoginVue.vue'
 import RegisterVue from './components/RegisterVue.vue'
+import ChatVue from './components/ChatVue.vue'
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path: '/', name: 'Register', component: RegisterVue},
         {path: '/login', name: 'Login', component: LoginVue},
+        {path: '/chat', name: 'Chat', component: ChatVue}
     ]
 })
 

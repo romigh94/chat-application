@@ -75,16 +75,23 @@ methods: {
         confirmPassword: this.confirmPassword
     }
 
+    const {data} = await axios.post("http://localhost:5000/register", formValues)
+
     if(this.password !== this.confirmPassword) {
-      this.errormessage = "Passwords do not match!"
+        this.errormessage = "Passwords do not match!"
     } else if (!this.email || !this.username || !this.password || !this.confirmPassword) {
-      this.errormessage = "All fields are required!"
-    } else {
-      console.log(formValues)
-      this.successmessage = "You have successfully registered!"
-      await axios.post("http://localhost:5000/register", formValues)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+        this.errormessage = "All fields are required!"
+    } else if (this.username.length < 3) {
+        this.errormessage = "Username should be greater than 3 characters"
+    } else if (this.password < 8) {
+        this.errormessage = "Password should be equal or greater than 8 characters"
+    } else if (data.status === false) {
+        this.errormessage = data.msg
+    } else if (data.status === true) {
+        this.successmessage = "You have successfully registered!"
+        localStorage.setItem('chat-app-user', JSON.stringify(data.newUser))
+        this.$router.push('/chat')
+        
     }
 
 
