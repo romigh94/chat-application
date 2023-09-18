@@ -101,7 +101,13 @@ methods: {
     this.errormessage = ""
     this.successmessage =""
   }
+}/*,
+mounted() {
+  if(localStorage.getItem('chat-app-user')) {
+    this.$router.push('/chat')
+  }
 }
+*/
 
 
 }

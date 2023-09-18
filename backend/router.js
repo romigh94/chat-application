@@ -68,4 +68,28 @@ router.post('/register', async (req, res) => {
     }
 })
 
+
+router.post('/login', async (req,res) => {
+    try {
+        const {username, password} = req.body
+
+        const user = await User.findOne({username})
+
+        if (!user) {
+            return res.json({msg:"Incorrect username and/or password", status: false})
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) { 
+            return res.json({msg:"Incorrect username and/or password", status: false})
+        }
+
+        return res.json({status: true, user})
+
+    } catch(err) {
+        console.log(err)
+        res.sendStatus(500)
+    }
+})
+
 module.exports = router;
