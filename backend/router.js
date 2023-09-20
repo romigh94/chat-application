@@ -92,4 +92,22 @@ router.post('/login', async (req,res) => {
     }
 })
 
+router.post('/setavatar/:id', async (req, res) => {
+    try {
+        const userId = req.params.id
+        const avatarImage = req.body.image 
+        const userData = await User.findByIdAndUpdate(userId, {
+            isAvatarImageSet: true,
+            avatarImage,
+        })
+
+        return res.json({
+            isSet: userData.isAvatarImageSet,
+            image: userData.avatarImage
+        })
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 module.exports = router;

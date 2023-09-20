@@ -44,7 +44,19 @@ export default {
     async setProfilePicture() {
       if (this.selectedAvatar === undefined) {
         this.errormsg = "Please select an avatar"
-      } 
+      } else {
+        const user = await JSON.parse(localStorage.getItem("chat-app-user"))
+        const {data} = await axios.post(`http://localhost:5000/setavatar/${user._id}`, {
+          image: this.avatars[this.selectedAvatar]
+        })
+
+        if (data.isSet) {
+          user.isAvatarImageSet = true
+          user.avatarImage = data.image
+          localStorage.setItem("chat-app-user", JSON.stringify(user))
+          this.$router.push('/chat')
+        }
+      }
     }
   },
   async mounted() {

@@ -2,6 +2,9 @@
     <input v-model="name" type="text" class="text" placeholder="Name">
     <input v-model="message" type="text" class="text" placeholder="Message">
     <button @click="sendMessage">Send</button>
+
+
+    <button @click="handleLogOut">Log Out</button>
 </template>
 
 <script>
@@ -30,6 +33,10 @@ console.log(msg)
         console.log(err)
       }
     },
+    handleLogOut() {
+      localStorage.removeItem("chat-app-user")
+      this.$router.push('/login')
+    }
     }
   }
   
