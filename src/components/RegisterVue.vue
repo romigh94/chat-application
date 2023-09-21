@@ -57,8 +57,7 @@ data() {
     email: '',
     password: '',
     confirmPassword: '',
-    errormessage: '',
-    successmessage: ''
+    errormessage: ''
   }
 },
 
@@ -88,9 +87,8 @@ methods: {
     } else if (data.status === false) {
         this.errormessage = data.msg
     } else if (data.status === true) {
-        this.successmessage = "You have successfully registered!"
         localStorage.setItem('chat-app-user', JSON.stringify(data.newUser))
-        this.$router.push('/chat')
+        this.$router.push('/setavatar')
         
     }
 
@@ -99,7 +97,6 @@ methods: {
   handleChange(e) {
     e.preventDefault()
     this.errormessage = ""
-    this.successmessage =""
   }
 }/*,
 mounted() {

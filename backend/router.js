@@ -110,4 +110,16 @@ router.post('/setavatar/:id', async (req, res) => {
     }
 })
 
-module.exports = router;
+router.get('/allusers/:id', async (req,res) => {
+    try {
+
+        const users = await User.find({_id:{$ne: req.params.id}})
+
+        return res.json(users)
+
+    } catch(err) {
+        console.log(err)
+    }
+})
+
+module.exports = router; 

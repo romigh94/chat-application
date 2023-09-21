@@ -68,6 +68,7 @@ methods: {
         this.errormessage = data.msg
     } else if (data.status === true) {
         this.$router.push('/chat') 
+        localStorage.setItem('chat-app-user', JSON.stringify(data.user))
     }
 
   } catch (err) {
