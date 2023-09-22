@@ -2,9 +2,21 @@
   <div class="chat-container">
     <div class="chat-inner-container">
 
-      HELLO
+      <ContactsVue 
+        :contacts="contacts" 
+        :currentUser="currentUser" 
+        :changeChat="handleChatChange" 
+      />
 
-      <ContactsVue :contacts="contacts" :currentUser="currentUser" />
+      <div v-if="currentChat === undefined">
+        <WelcomeVue 
+          :currentUser="currentUser"
+        />
+      </div>
+
+      <div v-else>
+        <ChatContainer :currentChat="currentChat" />
+      </div>
 
       <!--
       <input v-model="name" type="text" class="text" placeholder="Name">
@@ -21,21 +33,27 @@
 <script>
 import axios from 'axios'
 import ContactsVue from './ContactsVue.vue'
+import WelcomeVue from './WelcomeVue.vue'
+import ChatContainer from './ChatContainer.vue'
 
 export default {
   data() { 
     return { 
       contacts: [],
-      currentUser: {}
+      currentUser: {},
+      currentChat: undefined
     }
   },
   components: {
-    ContactsVue
+    ContactsVue, WelcomeVue, ChatContainer
   },
   methods: {
       handleLogOut() {
         localStorage.removeItem("chat-app-user")
         this.$router.push('/login')
+      },
+      handleChatChange(chat) {
+        this.currentChat = chat
       }
     },
     async mounted() {
@@ -55,7 +73,7 @@ export default {
       }
 
 
-    }
+    } 
   }
   
 </script>

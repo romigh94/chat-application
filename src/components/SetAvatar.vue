@@ -61,6 +61,10 @@ export default {
   },
   async mounted() {
     const data = [];
+
+    if (!localStorage.getItem("chat-app-user")) {
+      this.$router.push('/login')
+    }
     for (let i = 0; i < 4; i++) {
       const response = await axios.get(`${api}/${Math.round(Math.random() * 1000)}`)
       const buffer = new Buffer(response.data)

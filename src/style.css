@@ -157,9 +157,9 @@ span > a {
 }
 
 
-/*CHAT CONTAINER*/
+ /*CHAT CONTAINER*/
 
-.chat-container {
+ .chat-container {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -180,6 +180,193 @@ span > a {
 
 @media screen and (min-width: 720px) and (max-width: 1080px) {
     .chat-inner-container {
-        grid-template-columns: 35% 65%;
+        grid-template-columns: 20% 65%;
     }
+}
+
+.contact-container {
+    display: grid;
+    grid-template-rows: 10% 75% 15%;
+    overflow: hidden;
+    background-color: #080420;
+}
+
+.contact-container .brand {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    gap:1rem;
+}
+
+.contact-container .brand img {
+    height: 2rem;
+}
+
+.contact-container .brand h3 {
+    color: white;
+    text-transform: uppercase;
+}
+
+.contacts {
+    display: flex;
+    overflow: auto;
+    gap: 0.8rem;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contacts::-webkit-scrollbar {
+    width: 0.2rem;
+}
+
+.contact {
+    background-color: #ffffff39;
+    min-height: 5rem;
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+
+.contact .avatar {
+    cursor: pointer;
+    border-radius: 0.2rem;
+    padding: 0.4rem;
+    gap: 1rem;
+    transition: 0.5s ease-in-out;
+}
+
+.contact .avatar img {
+    height: 3rem;
+}
+
+.username h4, h3{
+    color: white;
+}
+
+.contact-container .selectedUser {
+    background-color: #9186f3;
+}
+
+.current-user {
+    background-color: #0d0d30;
+    justify-content:center;
+    align-items: center;
+    display: flex;
+}
+
+.current-user .avatar img {
+    height: 4rem;
+    max-inline-size: 100%;
+}
+
+@media screen and (min-width: 720px) and (max-width: 1080px) {
+    .contact-container {
+        gap: 0.5rem;
+    }
+    .username h3 {
+        font-size: 1rem;
+    }
+}
+
+
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+}
+.welcome-container img {
+    height: 20rem;
+}
+
+.welcome-container span {
+    color: #4e0eff;
+}
+
+.chatcontainer-container {
+    padding-top: 1rem;
+}
+
+.chatcontainer-container .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+.chatcontainer-container .user-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.chatcontainer-container .avatar img {
+    height: 3rem;
+}
+
+.chatcontainer-container .username h3 {
+    color: white;
+}
+
+.logout-container button {
+    text-transform: none !important;
+}
+
+.messages-container {
+    height: 100%;
+}
+
+.chatinput-container {
+    display: grid;
+    grid: 5% 95%;
+    align-items:center;
+    background-color: #080420;
+    padding: 0.2rem;
+    padding-bottom: 0.3rem;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 1rem;
+}
+
+.input-container {
+    width: 100%;
+    height: 60%;
+    background-color: transparent;
+    display: flex;
+    align-content: center;
+    gap: 2rem;
+    background-color: #ffffff34;
+
+}
+
+input {
+    width: 100%;
+    height: 90%;
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+
+input::selection {
+    background-color: #9186f3;
+}
+
+input:focus {
+    outline: none;
+}
+
+.chatinput-container button {
+    padding: 0.3rem 2rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9186f3;
+    border: none;
 }
