@@ -15,7 +15,10 @@
       </div>
 
       <div v-else>
-        <ChatContainer :currentChat="currentChat" />
+        <ChatContainer 
+          :currentChat="currentChat" 
+          :currentUser="currentUser" 
+          />
       </div>
 
       <!--

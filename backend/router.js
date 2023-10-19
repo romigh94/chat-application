@@ -3,7 +3,8 @@ const router = express.Router();
 const Message = require('./schemas/messageSchema')
 const User = require('./schemas/userSchema')
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const messageSchema = require('./schemas/messageSchema');
 require('dotenv').config()
 
 mongoose
@@ -121,5 +122,47 @@ router.get('/allusers/:id', async (req,res) => {
         console.log(err)
     }
 })
+
+router.post('/addmessage', async (req,res) => {
+    try {
+        const {from,to,message} = req.body
+        const data = await messageSchema.create({
+            message: {text: message},
+            users: {from, to},
+            sender: from
+        })
+
+        if(data) {
+            return res.json({msg: "Message added successfully"})
+       } else {
+            return res.json({msg: "Failed to add message"})
+       }
+
+    } catch(error) {
+        console.log(error)
+    }
+})
+
+router.post('/getallmessages', async (req,res) => {
+    try {
+        const {from,to} = req.body
+        const messages = await messageSchema.find({
+            users: {
+                $all: [from, to]
+            }
+        }).sort({updatedAt: 1})
+        const projectMessages = messages.map((msg) => {
+            return {
+                fromSelf: msg.sender.toString() === from,
+                message: msg.message.text,
+            }
+        })
+        res.json(projectMessages)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
 
 module.exports = router; 
