@@ -287,9 +287,9 @@ span > a {
 
 .chatcontainer-container {
     padding-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
+    display: grid;
+    grid-template-rows: 10% 78% 12%;
+    gap: 0.1rem;
 }
 
 .chatcontainer-container .chat-header {
@@ -365,4 +365,41 @@ input:focus {
     align-items: center;
     background-color: #9186f3;
     border: none;
+}
+
+
+.chat-messages {
+    padding: 1rem 2rem;
+    display:flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: auto;
+}
+
+.chat-messages .message {
+    display: flex;
+    align-items: center;
+}
+
+.chat-messages .message .content {
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 1rem;
+    color: #d1d1d1;
+}
+
+.sended {
+    justify-content: flex-end;
+}
+
+.sended .content {
+    background-color: #4f04ff21;
+}
+
+.received {
+    justify-content: flex-start;
+}
+
+.received .content {
+    background-color: #9900ff20;
 }

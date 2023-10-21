@@ -132,6 +132,7 @@ router.post('/addmessage', async (req,res) => {
             sender: from
         })
 
+
         if(data) {
             return res.json({msg: "Message added successfully"})
        } else {
@@ -145,19 +146,29 @@ router.post('/addmessage', async (req,res) => {
 
 router.post('/getallmessages', async (req,res) => {
     try {
-        const {from,to} = req.body
+        const { from, to } = req.body;
+
         const messages = await messageSchema.find({
             users: {
-                $all: [from, to]
-            }
-        }).sort({updatedAt: 1})
+                $elemMatch: {
+                    from: from,
+                    to: to
+                }
+
+        }})
+
+        console.log(messages)
+
         const projectMessages = messages.map((msg) => {
+            console.log(msg.sender)
             return {
                 fromSelf: msg.sender.toString() === from,
                 message: msg.message.text,
-            }
-        })
-        res.json(projectMessages)
+            };
+        });
+
+        console.log("Project", projectMessages)
+        res.json(projectMessages);
     } catch (error) {
         console.log(error)
     }

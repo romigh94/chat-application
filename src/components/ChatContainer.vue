@@ -14,8 +14,13 @@
     </div>
     <div class="chat-messages">
         <div v-for="(message, index) in messages" :key="index" class="message">
-            {{ message.text }}
-        <!-- Add any additional message information or formatting here -->
+            <div class="message" :class="{ 'sended': message.fromSelf, 'received': !message.fromSelf }">
+                <div class="content">
+                    <p>
+                        {{ message.message }}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
         <ChatInput :handleSendMsg="handleSendMsg" />
@@ -60,12 +65,16 @@ export default {
         }
     },
     async mounted() {
-        const response = await axios.post('http://localhost:5000/getallmessages', {
+        await axios.post('http://localhost:5000/getallmessages', {
                 from: this.currentUser._id,
                 to: this.currentChat._id
             })
+            .then(res => {
+                console.log(res.data.messages)
+                this.messages = res.data
+            })
+            .catch(err => console.log(err))
 
-        this.messages = response.data
     }
 }
 </script>
